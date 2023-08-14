@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - /app/prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus/
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=30d
+      - --web.enable-admin-api
+      - --web.enable-lifecycle
+    ports:
+      - 9090:9090
+
+    restart: always
+
+volumes:
+  prometheus_data:
+networks:
+  prometheus:
+
+### docker-compose for prometheus ###
