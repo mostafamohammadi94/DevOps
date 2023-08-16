@@ -8,6 +8,10 @@ python-docker:
   file.managed:
     - source: salt://prometheus/dockerfiles/docker-compose.yml
 
+/app/prometheus/alert.rules:
+  file.managed:
+    - source: salt://prometheus/conf.d/alert.rules
+
 
 /app/prometheus/prometheus.yml:
   file.managed:
